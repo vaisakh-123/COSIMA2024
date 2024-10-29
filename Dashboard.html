@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Steth Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for professional styling */
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .dashboard-header {
+            text-align: center;
+            margin: 30px 0;
+            color: #007bff;
+        }
+        .dashboard-header h1 {
+            font-weight: 600;
+        }
+        .dashboard-buttons {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .profile-card {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .profile-card img {
+            border-radius: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 3px solid #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-card h2 {
+            text-align: center;
+            margin-top: 15px;
+            color: #333;
+        }
+        .profile-card p {
+            font-size: 16px;
+            color: #555;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        ul li {
+            font-size: 16px;
+            color: #333;
+        }
+        .see-more {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .btn-see-more {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-see-more:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>Welcome to E-Steth <br><strong>Dashboard</strong></h1>
+        </div>
+
+        <!-- Dashboard Navigation Buttons -->
+        <div class="dashboard-buttons">
+            <button class="btn btn-primary" onclick="showSection('doctor-details')">Doctor Details</button>
+            <button class="btn btn-primary" onclick="showSection('patient-details')">Patient Details</button>
+            <button class="btn btn-primary" onclick="showSection('appointments')">Appointments</button>
+        </div>
+
+        <!-- Doctor Details Section -->
+        <div id="doctor-details" class="profile-card">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Doctor's Image -->
+                    <img src="1.jpg" alt="Dr. Sarah Wilson">
+                    <h2>Dr. Sarah Wilson</h2>
+                    <p><strong>Medical Specialty:</strong> Cardiologist</p>
+                    <p><strong>Experience:</strong> 10 years</p>
+                    <p><strong>Age:</strong> 45</p>
+                    <p><strong>Gender:</strong> Female</p>
+                    <p><strong>Address:</strong> 1234 Clinic Rd, Cardiology Unit</p>
+                    <p><strong>Time Slot:</strong> 10:00 - 16:00 hrs</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Patient Details Section -->
+        <div id="patient-details" class="row" style="display: none;">
+            <!-- Patient 1 -->
+            <div class="col-md-6 profile-card">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Patient Image -->
+                        <img src="2.png" alt="Ashwin Abraham Thomas">
+                        <h2>Ashwin Abraham Thomas</h2>
+                        <p><strong>Age:</strong> 26</p>
+                        <p><strong>Contact:</strong> 555-0101</p>
+                        <p><strong>Blood Group:</strong> A+</p>
+                        <p><strong>Last Visit:</strong> 2024-10-10</p>
+                        <div class="see-more">
+                            <a href="See_more.html" class="btn-see-more">See More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patient 2 -->
+            <div class="col-md-6 profile-card">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="4.png" alt="Jane Smith">
+                        <h2>Rose Varghese</h2>
+                        <p><strong>Age:</strong> 25</p>
+                        <p><strong>Contact:</strong> 555-0202</p>
+                        <p><strong>Blood Group:</strong> B+</p>
+                        <p><strong>Last Visit:</strong> 2024-10-11</p>
+                        <div class="see-more">
+                            <a href="See_more.html" class="btn-see-more">See More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patient 3 -->
+            <div class="col-md-6 profile-card">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="3.png" alt="Bob Johnson">
+                        <h2>Alen Joseph</h2>
+                        <p><strong>Age:</strong> 27</p>
+                        <p><strong>Contact:</strong> 555-0303</p>
+                        <p><strong>Blood Group:</strong> AB+</p>
+                        <p><strong>Last Visit:</strong> 2024-10-12</p>
+                        <div class="see-more">
+                            <a href="See_more.html" class="btn-see-more">See More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patient 4 -->
+            <div class="col-md-6 profile-card">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="6.png" alt="Alice Davis">
+                        <h2>Vaisakh Mohan</h2>
+                        <p><strong>Age:</strong> 26</p>
+                        <p><strong>Contact:</strong> 555-0404</p>
+                        <p><strong>Blood Group:</strong> O+</p>
+                        <p><strong>Last Visit:</strong> 2024-10-13</p>
+                        <div class="see-more">
+                            <a href="See_more.html" class="btn-see-more">See More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointments Section -->
+        <div id="appointments" class="profile-card" style="display: none;">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Upcoming Appointments</h2>
+                    <ul>
+                        <li>John Doe with Dr. Sarah Wilson on 2024-10-23 at 10:00 AM</li>
+                        <li>Jane Smith with Dr. Mike Brown on 2024-10-24 at 11:00 AM</li>
+                        <li>Bob Johnson with Dr. Emily Davis on 2024-10-25 at 12:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to show different sections
+        function showSection(sectionId) {
+            document.getElementById('doctor-details').style.display = 'none';
+            document.getElementById('patient-details').style.display = 'none';
+            document.getElementById('appointments').style.display = 'none';
+
+            // Show the selected section
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>

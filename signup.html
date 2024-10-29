@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+       
+        </div>
+        <div class="right-panel">
+            <form id="signupForm">
+                <h2>Doctor Sign Up</h2>
+                <div class="input-field">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="input-field">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="input-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <div class="or">OR</div>
+                <button type="button" class="google-sign-in-btn">Sign up with Google</button>
+                <div class="already-have-account">
+                    <a href="login.html">Already have an account? Sign In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions from Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDawY6NyGitIOBRcg2OymjdTuX519SXZ60",
+            authDomain: "e-steth.firebaseapp.com",
+            projectId: "e-steth",
+            storageBucket: "e-steth.appspot.com",
+            messagingSenderId: "966909914980",
+            appId: "1:966909914980:web:dfb9e11af6a3428eef5471",
+            measurementId: "G-985S787FX0"
+        };
+
+      // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Check if Firebase is initialized correctly
+        console.log("Firebase initialized:", auth, db);
+
+        // Sign up form submission
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();  // Prevent the form from refreshing the page
+            console.log("Form submitted");
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Check if values are captured
+            console.log("Form values:", { name, email, password });
+
+            try {
+                // Create user with email and password
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Check if user is created successfully
+                console.log("User created:", user);
+
+                // Save additional user data in Firestore
+                await setDoc(doc(db, 'users', user.uid), {
+                    name: name,
+                    email: email,
+                    createdAt: new Date()
+                });
+
+                // Success message
+                console.log("User data saved to Firestore");
+
+                alert("Sign up successful!");
+                window.location.href = 'login.html';  // Redirect to login page
+
+            } catch (error) {
+                // Error handling
+                console.error("Error signing up:", error.message);
+                alert(error.message);
+            }
+        });
+        // Google Sign In
+        document.querySelector('.google-sign-in-btn').addEventListener('click', async () => {
+            const provider = new GoogleAuthProvider();
+
+            try {
+                // Trigger Google Sign-In
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+
+                // Check if user data already exists in Firestore
+                const docRef = doc(db, 'users', user.uid);
+                const docSnap = await getDoc(docRef);
+
+                if (!docSnap.exists()) {
+                    // If not, add user data to Firestore
+                    await setDoc(docRef, {
+                        name: user.displayName,
+                        email: user.email,
+                        createdAt: new Date()
+                    });
+                }
+
+                // Redirect to doctor details page
+                window.location.href = 'doctor_details.html'; 
+
+            } catch (error) {
+                console.error("Error signing in with Google:", error);
+                alert(error.message);
+            }
+        });
+    </script>
+</body>
+</html>

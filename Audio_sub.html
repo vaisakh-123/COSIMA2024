@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio from Firebase</title>
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script type="module">
+    // Import necessary Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBacZPcLaOTNuxRr4quPK81eTaUNZQttYU",
+      authDomain: "audio-test-63d8c.firebaseapp.com",
+      projectId: "audio-test-63d8c",
+      storageBucket: "audio-test-63d8c.appspot.com",
+      messagingSenderId: "224765325567",
+      appId: "1:224765325567:web:95136dc3728941f74a5cca",
+      measurementId: "G-7BRFJR8TES"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+
+    // Function to fetch and play audio
+    async function loadAudio() {
+      try {
+        // Reference to your audio file in Firebase Storage
+        const audioRef = ref(storage, 'heartbeat-loud-242421.mp3');
+        
+        // Get the download URL
+        const audioURL = await getDownloadURL(audioRef);
+        
+        // Set the URL to the audio element
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.src = audioURL;
+        
+        // Attempt to play audio automatically
+        audioPlayer.play().catch((error) => {
+          console.error("Autoplay failed:", error);
+          alert("Autoplay failed. Please click play to listen to the audio.");
+        });
+      } catch (error) {
+        console.error("Error fetching audio file: ", error);
+      }
+    }
+
+    // Load and attempt to play audio when the page loads
+    window.onload = loadAudio;
+  </script>
+</head>
+<body>
+  <h1>Audio from Firebase</h1>
+  <!-- Audio player -->
+  <audio id="audioPlayer" controls></audio>
+</body>
+</html>

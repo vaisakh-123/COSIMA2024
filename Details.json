@@ -1,0 +1,44 @@
+{
+  "users": {
+    "user1_unique_id": {
+      "email": "a@gmail.com.com",
+      "doctor": {
+        "id": 1,
+        "photo": "doctor_photo.jpg",
+        "name": "Dr. Emily Carter",
+        "medical_specialty": "Cardiology",
+        "experience": "15 years",
+        "age": 45,
+        "gender": "Female",
+        "address": "123 Heart Avenue, Hamburg",
+        "time_slot": "9:00 AM - 5:00 PM"
+      },
+      "patients": [
+        {
+          "id": 101,
+          "photo": "patient1.jpg",
+          "name": "Alice Johnson",
+          "age": 34,
+          "gender": "Female",
+          "blood_group": "A+"
+        },
+        {
+          "id": 102,
+          "photo": "patient2.jpg",
+          "name": "John Smith",
+          "age": 40,
+          "gender": "Male",
+          "blood_group": "B+"
+        },
+        {
+          "id": 103,
+          "photo": "patient3.jpg",
+          "name": "Sophia Brown",
+          "age": 29,
+          "gender": "Female",
+          "blood_group": "O-"
+        }
+      ]
+    }
+  }
+}
